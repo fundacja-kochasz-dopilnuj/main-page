@@ -43,6 +43,8 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  /* Stałe miejsce na pasek przewijania — unika przesunięcia wycentrowanej nawigacji przy przejściu między stronami o różnej wysokości. */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -911,36 +913,16 @@ ul {
 }
 
 /* ===== GALLERY PAGES ===== */
-.page--gallery .header {
-  background: rgba(253, 250, 249, 0.95);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-sm);
-  padding: 0.8rem 0;
-}
-
-.page--gallery .nav__logo-img {
-  height: 40px;
-}
-
-.page--gallery .nav__logo-name,
-.page--gallery .nav__link {
-  color: var(--clr-text-muted);
-}
-
-.page--gallery .nav__link:hover {
-  color: var(--clr-primary-dark);
-  background: var(--clr-accent-light);
-}
-
+/* Nagłówek jak na stronie głównej: przezroczysty u góry, biały pasek dopiero po .is-scrolled (JS). */
 .page--gallery .nav__link--active {
   color: var(--clr-primary-dark);
   background: var(--clr-accent-light);
-  font-weight: 600;
+  /* Jak pozostałe linki — grubsza kreska zmienia szerokość tekstu i przy flexie przesuwa całą grupę w menu. */
+  font-weight: 500;
 }
 
-.page--gallery .nav__link--cta {
-  background: var(--clr-accent);
-  color: var(--clr-primary-dark) !important;
+.page--gallery .header.is-scrolled .nav__link--active {
+  color: var(--clr-primary-dark);
 }
 
 .gallery-hero {
