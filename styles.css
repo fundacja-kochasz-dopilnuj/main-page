@@ -248,6 +248,7 @@ ul {
   color: var(--clr-primary-dark);
   padding: 0.4rem 0.8rem;
   border-radius: 100px;
+  white-space: nowrap;
   transition: all var(--transition);
 }
 
@@ -866,11 +867,8 @@ ul {
   }
 }
 
-@media (max-width: 640px) {
-  :root {
-    --space-2xl: 4rem;
-  }
-
+/* Poniżej ~1000px siedem pozycji menu nie mieści się w jednej linii obok logo. */
+@media (max-width: 1024px) {
   .nav__toggle {
     display: flex;
     z-index: 1001;
@@ -932,6 +930,12 @@ ul {
   .nav__toggle.is-open span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
   }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --space-2xl: 4rem;
+  }
 
   .form__row {
     grid-template-columns: 1fr;
@@ -949,14 +953,16 @@ ul {
 
 /* ===== GALLERY PAGES ===== */
 /* Nagłówek jak na stronie głównej: przezroczysty u góry, biały pasek dopiero po .is-scrolled (JS). */
-.page--gallery .nav__link--active {
+.page--gallery .nav__link--active,
+.page--materials .nav__link--active {
   color: var(--clr-primary-dark);
   background: var(--clr-accent-light);
   /* Jak pozostałe linki — grubsza kreska zmienia szerokość tekstu i przy flexie przesuwa całą grupę w menu. */
   font-weight: 500;
 }
 
-.page--gallery .header.is-scrolled .nav__link--active {
+.page--gallery .header.is-scrolled .nav__link--active,
+.page--materials .header.is-scrolled .nav__link--active {
   color: var(--clr-primary-dark);
 }
 
@@ -1079,6 +1085,67 @@ ul {
   object-fit: contain;
   object-position: center;
   background: var(--clr-bg-alt);
+}
+
+/* ===== MATERIAŁY ===== */
+.section--materials {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-2xl);
+  background: var(--clr-bg);
+}
+
+.materials-list {
+  list-style: none;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.materials-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  color: var(--clr-text);
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.materials-item:hover,
+.materials-item:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--clr-accent);
+  outline: none;
+}
+
+.materials-item__type {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--clr-primary);
+  background: var(--clr-accent-light);
+  padding: 0.3em 0.7em;
+  border-radius: var(--radius-sm);
+}
+
+.materials-item__title {
+  flex: 1;
+  font-weight: 500;
+}
+
+.materials-item__action {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--clr-primary);
 }
 
 /* ===== LIGHTBOX ===== */
